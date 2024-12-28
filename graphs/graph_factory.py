@@ -1,21 +1,13 @@
-from graphs.conversational.graph import ConversationalGraph
-from graphs.news.graph import NewsGraph
 from graphs.generic_graph import GenericGraph
 from graphs.graph_params import GraphParams
-
+from constants.graph_mapping import graph_mapping
 
 class GraphFactory:
-
-    graph_mapping = {
-        "Conversational AI": ConversationalGraph,
-        "News AI": NewsGraph
-    }
-
     def __init__(self, graph_params: GraphParams):
         self.graph_params = graph_params
 
     def create_graph(self) -> GenericGraph:
-        if self.graph_mapping.get(self.graph_params.agent):
-            return self.graph_mapping[self.graph_params.agent](self.graph_params)
+        if graph_mapping.get(self.graph_params.agent):
+            return graph_mapping[self.graph_params.agent](self.graph_params)
         else:
             raise ValueError('Invalid graph name')

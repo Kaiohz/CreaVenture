@@ -10,7 +10,8 @@ profiles = [
     cl.ChatProfile(
         name="News AI",
         markdown_description="Help you to stay updated on what's happening in the world. You can change the model from the **settings**.",
-        icon="public/avatars/my_assistant.png",
+        icon="public/avatars/news.png",
+        hasSources=True,
     ),
 ]
 

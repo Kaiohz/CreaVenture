@@ -18,7 +18,7 @@ A Python application built with Chainlit for interacting with Large Language Mod
 
 ### Install Dependencies
 ```bash
-pip install -r requirements.txt
+poetry install
 ollama pull llama3.2 llama3.1 qwen2.5 mistral
 cp .env.example .env
 ```

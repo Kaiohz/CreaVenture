@@ -1,3 +1,4 @@
+import json
 from typing import List
 from graphs.news.chains.fetch_news import FetchNewsChain
 from graphs.news.chains.generate import GenerateChain
@@ -29,9 +30,8 @@ class NewsNodes():
     
     async def find_country(self, state) -> NewsState:
         question = state["question"]
-        history = state["history"]
         country = CountryModel(**await self.CountryFinderChain.chain.ainvoke({"question": question}))
-        return NewsState(question=question, country=country.code, history=history)
+        return NewsState(question=question, country=country.code)
     
     async def find_topic(self, state) -> NewsState:
         question = state["question"]
@@ -42,8 +42,11 @@ class NewsNodes():
         question = state["question"]
         country = state["country"] if "country" in state else ""
         response = await self.FetchNewsChain.tool_node.ainvoke({"messages": [await self.FetchNewsChain.chain_with_tools.ainvoke({"question": question, "country": country})]})
-        headlines: List[str] = response["messages"][0].content
-        return NewsState(question=question, headlines=headlines)
+        content: List[str] = response["messages"][0].content
+        headlines_sources = tuple(json.loads(content))
+        headlines = headlines_sources[0] if len(headlines_sources[0]) and headlines_sources[0] else []
+        sources = headlines_sources[1] if len(headlines_sources) > 1 and headlines_sources[1] else []
+        return NewsState(question=question, headlines=headlines, sources=sources)
     
     async def generate(self, state) -> NewsState:
         headlines = state["headlines"]

@@ -17,8 +17,6 @@ class NewsState(TypedDict):
     """
 
     question: str
-    choice: str
-    history: List[str]
     topic: str
     country: str
     sources: List[str]
