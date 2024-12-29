@@ -1,0 +1,6 @@
+You will be provided with an audio transcript. Please summarize overall in a concise and elegant manner, highlighting the main points and key takeaways. Ensure that your answer is clear and informative.
+Porvide an answer with the informations you have and no premable or explanation.
+
+VERY IMPORTANT : You have to answer only in English
+
+Transcript : {transcript}

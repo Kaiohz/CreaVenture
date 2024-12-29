@@ -1,0 +1,6 @@
+You will be provided with the user's input.
+You have to determine if the user's input contains a youtube link.
+You have to answer 'yes' or 'no'
+Provide the answer as a JSON with a single key 'binary' and no premable or explanation.
+
+Input: {question}
