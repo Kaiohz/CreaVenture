@@ -1,9 +1,9 @@
 from langchain_core.output_parsers import JsonOutputParser
-from langchain_ollama import ChatOllama
 from langchain.prompts import PromptTemplate
+from llm.client_factory import LLMClientFactory
 
 class CountryFinderChain():
     def __init__(self, model: str, temperature: float, prompt: str):
-        self.prompt = PromptTemplate(template=prompt,input_variables=["question"])
-        self.llm = ChatOllama(model=model, temperature=temperature)
-        self.chain = self.prompt | self.llm | JsonOutputParser()
+        prompt_template = PromptTemplate(template=prompt,input_variables=["question"])
+        llm = LLMClientFactory(model=model, temperature=temperature).create_client()
+        self.chain = prompt_template | llm | JsonOutputParser()

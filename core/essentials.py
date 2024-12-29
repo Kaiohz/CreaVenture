@@ -4,9 +4,15 @@ from graphs.generic_graph import GenericGraph
 from langchain_core.messages import AIMessageChunk
 from graphs.graph_factory import GraphFactory
 from graphs.graph_params import GraphParams
-from constants.nodes_mapping import nodes_mapping
 
 class CoreEssentials:
+
+    nodes_mapping = {
+        "Conversational AI": "",
+        "News AI": "fetch_news",
+        "Pytube AI": ""
+    }
+
     def __init__(self):
         self.graph_params = GraphParams()
         self.graph_factory = GraphFactory(self.graph_params)
@@ -33,7 +39,7 @@ class CoreEssentials:
             if chunk[0] == "messages" and chunk[1][1]["langgraph_node"] == "generate":
                 values: AIMessageChunk = chunk[1][0]
                 await answer.stream_token(values.content)
-            node_name = nodes_mapping[cl.user_session.get("chat_profile")]
+            node_name = self.nodes_mapping[cl.user_session.get("chat_profile")]
             if node_name:
                 await self.process_sources(node_name,chunk,answer)
         await answer.send()
