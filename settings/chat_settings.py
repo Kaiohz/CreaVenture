@@ -7,7 +7,7 @@ class ChatSettings:
             Select(
                 id="Model",
                 label="LLM Model",
-                values=["Ollama/llama3.2", "Ollama/llama3.1","Ollama/qwen2.5", "Ollama/mistral","Google/gemini-1.5-flash","Google/gemini-1.5-pro","Google/gemini-1.5.flash-8b"],
+                values=["Ollama/llama3.2", "Ollama/llama3.1","Ollama/qwen2.5", "Ollama/mistral","Google/gemini-1.5-flash"],
                 initial_index=0,
             ),
             Slider(

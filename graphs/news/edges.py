@@ -14,4 +14,5 @@ class NewsConditionalEdges():
     async def headlines_or_specific(self, state) -> str:
         question = state["question"]
         choice_model: ChoiceModel = ChoiceModel(**await self.HeadlinesOrSpecificChain.chain.ainvoke({"question": question}))
+        print(choice_model.choice)
         return choice_model.choice

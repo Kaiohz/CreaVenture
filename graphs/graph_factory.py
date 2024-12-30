@@ -3,7 +3,6 @@ from graphs.conversational.graph import ConversationalGraph
 from graphs.generic_graph import GenericGraph
 from graphs.graph_params import GraphParams
 from graphs.news.graph import NewsGraph
-from graphs.pytube.graph import PytubeGraph
 
 class GraphFactory:
     def __init__(self, graph_params: GraphParams, graph_mapping: Dict[str, Type[GenericGraph]] = None):
@@ -11,7 +10,6 @@ class GraphFactory:
         self.graph_mapping = {
             "Conversational AI": ConversationalGraph,
             "News AI": NewsGraph,
-            "Pytube AI": PytubeGraph
         }
 
     def create_graph(self) -> GenericGraph:

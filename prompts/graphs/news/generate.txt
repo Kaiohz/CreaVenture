@@ -3,4 +3,5 @@ Porvide an answer with the informations you have and no premable or explanation.
 
 VERY IMPORTANT : You have to answer only in English
 
+Question : {question}
 Headlines : {headlines}

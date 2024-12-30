@@ -7,18 +7,16 @@ license = "Apache 2.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10.12"
+python = "^3.12.7"
 chainlit = "*"
 langgraph = "*"
 langchain-ollama = "*"
 langchain-community = "*"
 httpx = {extras = ["http2"], version = "*"}
 pydantic = "2.10.1"
-pytube = "*"
-openai-whisper = "*"
-torch = "2.2"
 setuptools-rust = "*"
 langchain-google-genai = "*"
+duckduckgo-search = "*"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
