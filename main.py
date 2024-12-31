@@ -18,8 +18,11 @@ async def on_chat_start():
 
 @cl.on_message
 async def main(msg: cl.Message):
-    response = await CoreEssentials.call_agent(msg)
-    await CoreEssentials.process_response(response)
+    try:
+        response = await CoreEssentials.call_agent(msg)
+        await CoreEssentials.process_response(response)
+    except Exception as e:
+        await cl.Message(content=f"{e}").send()
 
 @cl.on_settings_update
 async def setup_agent(settings):

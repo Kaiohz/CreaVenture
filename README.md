@@ -6,22 +6,36 @@ A Python application built with Chainlit for interacting with Large Language Mod
 ```
 .  
 ├── apis/         # API integrations including Google News  
-├── graphs/       # Graph implementations for conversation flows  
+├── graphs/       # Graph implementations for conversation flows
+├── core/         # Core methods
+├── llm/          # LLm clients
 ├── profiles/     # Chat profile configurations  
 ├── prompts/      # LLM prompt templates and loader  
 ├── public/       # Static assets and avatars  
 ├── settings/     # Application settings and configurations  
-└── main.py       # Entry point of the application
+├── main.py       # Entry point of the application
+└── README.md     # Project documentation
 ```
 
 ## Getting Started
 
 ### Install Dependencies
 ```bash
+curl https://pyenv.run | bash
+pyenv install 3.12
+pyenv global 3.12
 poetry install
-ollama pull llama3.2 llama3.1 qwen2.5 mistral
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull llama3.2 
+ollama pull llama3.1
+ollama pull qwen2.5
+ollama pull mistral
 cp .env.example .env
 ```
+
+## Get GoogleNews API key
+
+## Get your Gemini key if you want to gemini-1.5-flash
 
 ### Configure Environment
 - Copy `.env.example` to `.env`
@@ -29,7 +43,7 @@ cp .env.example .env
 
 ### Run the Application
 ```bash
-chainlit run main.py -w
+poetry run chainlit run main.py -w
 ```
 
 - Access the application at [http://localhost:8000](http://localhost:8000)

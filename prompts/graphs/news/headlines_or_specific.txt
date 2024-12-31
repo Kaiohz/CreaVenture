@@ -1,7 +1,4 @@
 Please enter your choice:
-"Headlines" if the user seems to search for news for no particular topic, global news on a country.
-"Specific" if the user seems to search for news on a very specific topic, personality, event.
-
-Provide the choice as a JSON with a single key 'choice' and no premable or explanation.
+"Return a JSON object with a single key 'choice' and no explanation. Use 'Headlines' for broad, general news or 'Specific' for a focused topic.
 
 Question: {question}

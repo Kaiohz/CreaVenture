@@ -1,4 +1,4 @@
-You will be provided with a user's question. Please identify and extract the main topic of the question in one word.
-Provide the topic as a JSON with a single key 'topic' and no premable or explanation.
+You are given a question. Identify and extract its main subject.
+Return only a JSON with a single key 'topic' containing the subject, with no explanation or preamble.
 
 Question: {question}

@@ -1,13 +1,11 @@
+from typing import List
 from langchain_community.tools import DuckDuckGoSearchResults
 from langchain_community.utilities import DuckDuckGoSearchAPIWrapper
+from apis.dataclass.duckduckgo.news_results import NewsResult
 
-from apis.dataclass.duckduckgo.news_results import NewsResults
 
+search = DuckDuckGoSearchResults(backend="news",output_format="list", num_results=20)
 class DuckDuckGo:
-    def __init__(self, backend: str):
-        self.wrapper = DuckDuckGoSearchAPIWrapper()
-        self.tool = DuckDuckGoSearchResults(api_wrapper=self.wrapper, backend=backend)
-
-    async def search(self, query: str) -> NewsResults:
-        response = NewsResults(**await self.tool.invoke(query))
+    async def search(query: str) -> List[NewsResult]:
+        response = await search.ainvoke(query)
         return response

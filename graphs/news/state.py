@@ -10,7 +10,7 @@ class NewsState(TypedDict):
     Attributes:
         question: question asked by the user
         history: history of messages
-        country: country to search
+        country_code: country_code to search
         sources: sources used to generate the answer
         summaries: summaries of articles
         final_answer: final answer generated
@@ -18,7 +18,8 @@ class NewsState(TypedDict):
 
     question: str
     topic: str
-    country: str
+    choice: str
+    country_code: str
     sources: List[str]
     headlines: List[str]
     final_answer: str

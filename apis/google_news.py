@@ -6,7 +6,6 @@ from apis.dataclass.google.top_headlines import TopHeadlines
 from apis.dataclass.google.sources import SourcesResponse
 from datetime import datetime, timedelta
 
-
 ## Config
 Api = GenericApi()
 GoogleNewsConfig = GoogleNewsConfig()

@@ -1,7 +1,17 @@
-You will be provided with a list of headlines. Please summarize overall in a concise and elegant manner, highlighting the main points and key takeaways. Ensure that your answer is clear and informative.
-Porvide an answer with the informations you have and no premable or explanation.
+You will be provided with a list of headlines. 
+Summarize them concisely, highlighting the main points and key takeaways. 
+Provide only your answer in English, with no preamble or extra explanation.
 
-VERY IMPORTANT : You have to answer only in English
+Example :
+    Politics:
+        - info 1
+        - info 2
+        ....
+    Events:
+        - info 1
+        - info 2
+        ...
+    ...
 
 Question : {question}
 Headlines : {headlines}

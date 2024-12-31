@@ -28,26 +28,40 @@ class NewsNodes():
     
     async def find_country(self, state) -> NewsState:
         question = state["question"]
-        country = CountryModel(**await self.CountryFinderChain.chain.ainvoke({"question": question}))
-        return NewsState(question=question, country=country.code)
+        try:
+            country = CountryModel(**await self.CountryFinderChain.chain.ainvoke({"question": question}))
+        except:
+            country = CountryModel(code="us")
+        return NewsState(question=question, country_code=country.code[:2], choice="Headlines")
     
     async def find_topic(self, state) -> NewsState:
         question = state["question"]
-        topic = TopicModel(**await self.TopicFinderChain.chain.ainvoke({"question": question}))
-        return NewsState(question=question, topic=topic)
+        try:
+            topic_model = TopicModel(**await self.TopicFinderChain.chain.ainvoke({"question": question}))
+        except:
+            topic_model = TopicModel(topic="")
+        return NewsState(question=question, topic=topic_model.topic, choice="Specific")
     
     async def fetch_news(self, state) -> NewsState:
         question = state["question"]
-        country = state["country"] if "country" in state else ""
-        response = await self.FetchNewsChain.tool_node.ainvoke({"messages": [await self.FetchNewsChain.chain_with_tools.ainvoke({"question": question, "country": country})]})
-        content: List[str] = response["messages"][0].content
-        headlines_sources = tuple(json.loads(content))
-        headlines = headlines_sources[0] if len(headlines_sources[0]) and headlines_sources[0] else []
-        sources = headlines_sources[1] if len(headlines_sources) > 1 and headlines_sources[1] else []
+        choice = state["choice"]
+        country_code = state["country_code"] if "country" in state else ""
+        try:
+            response = await self.FetchNewsChain.tool_node.ainvoke({"messages": [await self.FetchNewsChain.chain_with_tools.ainvoke({"question": question, "country_code": country_code, "choice": choice})]})
+            content: List[str] = response["messages"][0].content
+            headlines_sources = tuple(json.loads(content))
+            headlines = headlines_sources[0] if len(headlines_sources[0]) and headlines_sources[0] else []
+            sources = headlines_sources[1] if len(headlines_sources) > 1 and headlines_sources[1] else []
+        except:
+            headlines = []
+            sources = []
         return NewsState(question=question, headlines=headlines, sources=sources)
     
     async def generate(self, state) -> NewsState:
         headlines = state["headlines"]
         question = state["question"]
-        generation = await self.GenerateChain.chain.ainvoke({"question": question,"headlines": headlines})
+        try:
+            generation = await self.GenerateChain.chain.ainvoke({"question": question,"headlines": headlines})
+        except:
+            generation = ""
         return NewsState(final_answer=generation)

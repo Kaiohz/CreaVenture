@@ -1,12 +1,10 @@
 from dataclasses import dataclass
-from typing import List
+from datetime import datetime
 
 @dataclass
 class NewsResult:
     snippet: str
     title: str
     link: str
-
-@dataclass
-class NewsResults:
-    results: List[NewsResult]
+    date: str
+    source: str
