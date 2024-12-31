@@ -6,7 +6,6 @@ from apis.dataclass.google.top_headlines import TopHeadlines
 from apis.dataclass.google.sources import SourcesResponse
 from datetime import datetime, timedelta
 
-
 ## Config
 Api = GenericApi()
 GoogleNewsConfig = GoogleNewsConfig()
@@ -32,6 +31,6 @@ class GoogleNewsApi():
     
     async def get_everything(topic: str) -> ArticlesResponse:
         from_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-        params = {"apiKey": api_key, "q": topic, "sortBy": "popularity", "from": from_date}
+        params = {"apiKey": api_key, "q": topic, "sortBy": "relevancy", "searchIn": "title,description","from": from_date}
         articles_response: ArticlesResponse = ArticlesResponse(**await Api.get(everything_endpoint, params=params))
         return articles_response

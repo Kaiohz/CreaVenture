@@ -1,4 +1,4 @@
-You will be provided with a user's question. Please identify and extract the country mentioned in the question. If no country is mentioned, just answer fr
-Provide the country code as a JSON with a single key 'code' and no premable or explanation.
+You will be provided with a user's question. Please identify and extract the country mentioned in the question.
+Provide the country code ISO 3166 as a JSON with a single key 'code' and no premable or explanation.
 
 Question: {question}

@@ -4,7 +4,7 @@ from llm.client_factory import LLMClientFactory
 
 class FetchNewsChain():
     def __init__(self, model: str, temperature: float, prompt: str):
-        prompt_template = PromptTemplate(template=prompt,input_variables=["question","country"])
+        prompt_template = PromptTemplate(template=prompt,input_variables=["question","country_code","choice"])
         tools = NewsTools().tools
         llm = LLMClientFactory(model=model, temperature=temperature).create_client()
         self.chain_with_tools = prompt_template | llm.bind_tools(tools)
