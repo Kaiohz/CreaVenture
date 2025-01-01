@@ -13,7 +13,5 @@ class ConversationalNodes():
     async def generate(self, state) -> ConversationalState:
         question = state["question"]
         history = state["history"]
-        print(f"question: {question}")
-        print(f"history: {history}")
         generation = await self.GenerateChain.chain.ainvoke({"history": history, "question": question})
         return ConversationalState(question=question, history=history, final_answer=generation)
