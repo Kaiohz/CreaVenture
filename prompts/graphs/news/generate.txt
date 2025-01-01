@@ -1,18 +1,7 @@
 The priority is to answer the user's question.
 You will be provided with a list of headlines. 
-Summarize them, highlighting the main points and key takeaways. 
+Separate all kind of topic, Highlight the main points and key takeaways. 
 Your answer should be clear and informative without omitting any crucial information.
-
-Example :
-    Politics:
-        - info 1
-        - info 2
-        ....
-    Events:
-        - info 1
-        - info 2
-        ...
-    ...
 
 Question : {question}
 Headlines : {headlines}

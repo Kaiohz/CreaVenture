@@ -39,9 +39,12 @@ class CoreEssentials:
 
     async def process_response(self,response: AsyncIterator[dict[str, Any] | Any]):
         answer = cl.Message(content="")
+        sources = None
         node_name = self.nodes_mapping[cl.user_session.get("chat_profile")]
         final_node = node_name.split(",")[0]
         sources_node = node_name.split(",")[1] if len(node_name.split(",")) > 1 else None
+        settings = f"{cl.user_session.get('chat_profile')} - Model : {cl.user_session.get('model')} - Temperature : {cl.user_session.get('temperature')}\n"
+        answer.elements.append(cl.Text(content=f"{settings}", display="inline"))
         async for chunk in response:
             if chunk[0] == "messages" and chunk[1][1]["langgraph_node"] == final_node:
                 values: AIMessageChunk = chunk[1][0]
@@ -50,12 +53,12 @@ class CoreEssentials:
                 await self.process_sources(sources_node,chunk,answer)
         await answer.send()
 
-    async def process_sources(self, node_name: str,chunk,answer: cl.Message) -> cl.Message:
-        settings = f"{cl.user_session.get('chat_profile')} - Model : {cl.user_session.get('model')} - Temperature : {cl.user_session.get('temperature')}\n"
+    async def process_sources(self, node_name: str,chunk,answer: cl.Message) -> str:
+        sources = []
         if chunk[0] == "updates":
             if node_name in chunk[1] and "sources" in chunk[1][node_name]:
                 sources = chunk[1][node_name]["sources"]
                 formatted_sources = "\n".join(sources)
                 sources = f"Sources:\n{formatted_sources}"
-        answer.elements.append(cl.Text(content=f"{settings}{sources}", display="inline"))
-        return answer
+                answer.elements.append(cl.Text(content=f"{sources}", display="inline"))
+        return sources

@@ -20,11 +20,11 @@ class NewsGraph(GenericGraph):
         self.NewsGraph.add_node("topic_finder", self.NewsNodes.find_topic)
         self.NewsGraph.add_node("generate", self.NewsNodes.generate)
         self.NewsGraph.add_node("fetch_news", self.NewsNodes.fetch_news)
-        self.NewsGraph.add_node("empty_node", self.NewsNodes.empty_node)
+        self.NewsGraph.add_node("start_node", self.NewsNodes.empty_node)
         ## edges
-        self.NewsGraph.add_edge(START, "empty_node")
+        self.NewsGraph.add_edge(START, "start_node")
         self.NewsGraph.add_conditional_edges(
-            "empty_node",
+            "start_node",
             self.NewsConditionalEdges.headlines_or_specific,
             {
                 "Headlines": "country_finder",

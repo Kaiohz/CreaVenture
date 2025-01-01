@@ -15,14 +15,14 @@ class PytubeGraph(GenericGraph):
         self.construct_graph()
 
     def construct_graph(self):
-        self.PytubeGraph.add_node("empty_node", self.PytubeNodes.empty_node)
+        self.PytubeGraph.add_node("start_node", self.PytubeNodes.empty_node)
         self.PytubeGraph.add_node("summarizer", self.PytubeNodes.summarizer)
         self.PytubeGraph.add_node("generate", self.PytubeNodes.generate)
 
-        self.PytubeGraph.add_edge(START, "empty_node")
+        self.PytubeGraph.add_edge(START, "start_node")
 
         self.PytubeGraph.add_conditional_edges(
-            "empty_node",
+            "start_node",
             self.PytubeEdges.is_youtube_link,
             {
                 "yes": "summarizer",
