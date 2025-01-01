@@ -8,9 +8,9 @@ from graphs.graph_params import GraphParams
 class CoreEssentials:
 
     nodes_mapping = {
-        "Conversational AI": "",
-        "News AI": "fetch_news",
-        "Pytube AI": ""
+        "Conversational AI": "generate",
+        "News AI": "generate,fetch_news",
+        "Pytube AI": "generate"
     }
 
     def __init__(self):
@@ -35,13 +35,15 @@ class CoreEssentials:
 
     async def process_response(self,response: AsyncIterator[dict[str, Any] | Any]):
         answer = cl.Message(content="")
+        node_name = self.nodes_mapping[cl.user_session.get("chat_profile")]
+        final_node = node_name.split(",")[0]
+        sources_node = node_name.split(",")[1] if len(node_name.split(",")) > 1 else None
         async for chunk in response:
-            if chunk[0] == "messages" and chunk[1][1]["langgraph_node"] == "generate":
+            if chunk[0] == "messages" and chunk[1][1]["langgraph_node"] == final_node:
                 values: AIMessageChunk = chunk[1][0]
                 await answer.stream_token(values.content)
-            node_name = self.nodes_mapping[cl.user_session.get("chat_profile")]
             if node_name:
-                await self.process_sources(node_name,chunk,answer)
+                await self.process_sources(sources_node,chunk,answer)
         await answer.send()
 
     async def process_sources(self, node_name: str,chunk,answer: cl.Message) -> cl.Message:
