@@ -51,11 +51,11 @@ class CoreEssentials:
         await answer.send()
 
     async def process_sources(self, node_name: str,chunk,answer: cl.Message) -> cl.Message:
+        settings = f"{cl.user_session.get('chat_profile')} - Model : {cl.user_session.get('model')} - Temperature : {cl.user_session.get('temperature')}\n"
         if chunk[0] == "updates":
             if node_name in chunk[1] and "sources" in chunk[1][node_name]:
                 sources = chunk[1][node_name]["sources"]
                 formatted_sources = "\n".join(sources)
-                settings = f"{cl.user_session.get('chat_profile')} - Model : {cl.user_session.get('model')} - Temperature : {cl.user_session.get('temperature')}\n"
                 sources = f"Sources:\n{formatted_sources}"
-                answer.elements.append(cl.Text(content=f"{settings}{sources}", display="inline"))
+        answer.elements.append(cl.Text(content=f"{settings}{sources}", display="inline"))
         return answer
