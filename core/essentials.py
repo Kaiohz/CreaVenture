@@ -4,6 +4,8 @@ from graphs.generic_graph import GenericGraph
 from langchain_core.messages import AIMessageChunk
 from graphs.graph_factory import GraphFactory
 from graphs.graph_params import GraphParams
+from langchain.schema.runnable.config import RunnableConfig
+
 
 class CoreEssentials:
 
@@ -30,7 +32,9 @@ class CoreEssentials:
     async def call_agent(self,msg: cl.Message) -> AsyncIterator[dict[str, Any] | Any]:
         graph: GenericGraph = cl.user_session.get("graph")
         chat_history = cl.chat_context.to_openai()[-4:-1]
-        response = graph.get_graph().astream({"question": msg.content, "history": chat_history}, stream_mode=["messages","updates"])
+        config = {"configurable": {"thread_id": cl.context.session.id}}
+        cb = cl.LangchainCallbackHandler()
+        response = graph.get_graph().astream({"question": msg.content, "history": chat_history}, stream_mode=["messages","updates"], config=RunnableConfig(callbacks=[cb], **config))
         return response
 
     async def process_response(self,response: AsyncIterator[dict[str, Any] | Any]):

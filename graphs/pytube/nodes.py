@@ -22,15 +22,13 @@ class PytubeNodes():
     
     async def summarizer(self, state) -> PytubeState:
         question = state["question"]
-        summaries = ["There is no summaries"]
         transcript = await self.PytubeTools.get_transcript(question)
         if transcript:
-            summarizer_summaries = await self.SummarizerChain.chain.ainvoke({"transcript": transcript})
+            summaries = await self.SummarizerChain.chain.ainvoke({"transcript": transcript})
         return PytubeState(summaries=summaries)
     
     async def generate(self, state) -> PytubeState:
         question = state["question"]
         summaries = state["summaries"] if "summaries" in state else []
         final_answer = await self.GenerateChain.chain.ainvoke({"question": question,"summaries": summaries})
-        print(final_answer)
         return PytubeState(final_answer=final_answer, summaries=[])

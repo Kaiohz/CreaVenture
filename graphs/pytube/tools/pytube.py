@@ -31,6 +31,21 @@ class PytubeTools:
                 yt.streams.get_audio_only().download(output_path="./temp", filename="audio")
                 result = await self.loop.run_in_executor(None, model.transcribe, "./temp/audio")
                 transcript = result["text"]
-        return transcript.strip()
+        return await self.clean_subtitles(transcript.strip())
+    
+    async def clean_subtitles(self,srt_text: str) -> str:
+        """
+        Clean SRT formatted subtitles by removing timecodes and line numbers
+        """
+        lines = srt_text.split('\n')
+        clean_lines = []
+        
+        for line in lines:
+            if (not line.strip() or 
+                '-->' in line or 
+                line.strip().isdigit()):
+                continue
+            clean_lines.append(line.strip())
+        return ' '.join(clean_lines)
 
 

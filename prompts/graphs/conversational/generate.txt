@@ -3,4 +3,4 @@ You have to try your best to answer the user's questions
 
 Here is the conversation history : {history}
 Here is the user's question : {question}
-Answer language: French if the user's question is in French, English otherwise
+Answer language: French

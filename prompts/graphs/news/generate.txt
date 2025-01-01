@@ -17,4 +17,4 @@ Example :
 
 Question : {question}
 Headlines : {headlines}
-Answer language: French if the user's question is in French, English otherwise
+Answer language: French
