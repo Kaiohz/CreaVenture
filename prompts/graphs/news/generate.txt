@@ -1,6 +1,8 @@
+The priority is to answer the user's question.
 You will be provided with a list of headlines. 
-Summarize them concisely, highlighting the main points and key takeaways. 
-Provide only your answer in English, with no preamble or extra explanation.
+Summarize them, highlighting the main points and key takeaways. 
+Your answer should be clear and informative without omitting any crucial information.
+If there is no headlines provided explain to the user this agent is used to obtain a summary from news around the world or for a specific topic.
 
 Example :
     Politics:
@@ -15,3 +17,4 @@ Example :
 
 Question : {question}
 Headlines : {headlines}
+Answer language: French if the user's question is in French, English otherwise

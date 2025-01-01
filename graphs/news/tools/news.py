@@ -12,6 +12,7 @@ class NewsTools:
     @tool
     async def get_top_headlines(question: str,country_code: str) -> Tuple[List[str], List[str]]:
         """Calls the Google News API to get the top headlines when there is no specific topic there is two parameters country_code and question"""
+        print("headlines")
         sources = []
         descriptions = []
         try:
@@ -44,8 +45,10 @@ class NewsTools:
     @tool
     async def get_everything(question: str,topic: str) -> Tuple[List[str], List[str]]:
         """Calls the Google News API to get everything about a specific topic there is two parameters topic and question"""
+        print("everything")
         sources = []
         descriptions = []
+        print("topic",topic)
         try:
             if topic:
                 articles_response: ArticlesResponse = await GoogleNewsApi.get_everything(topic)

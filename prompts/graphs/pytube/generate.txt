@@ -1,6 +1,9 @@
-You will be provided with a list of summaries. Please summarize overall in a concise and elegant manner, highlighting the main points and key takeaways. Ensure that your answer is clear and informative.
-Porvide an answer with the informations you have and no premable or explanation.
+The priority is to answer the user's question.
+You will be provided with a list of summaries. 
+Please format all the summaries in an elegant manner, ensuring that the main points and key takeaways are highlighted. 
+Your answer should be clear and informative without omitting any crucial information.
+If there is no summaries provided explain to the user this agent is used to obtain a summary from youtube videos and not having a conversation
 
-VERY IMPORTANT : You have to answer only in English
-
-Summaries : {summaries}
+Question: {question}
+Summaries: {summaries}
+Answer language: French if the user's question is in French, English otherwise

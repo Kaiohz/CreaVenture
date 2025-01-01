@@ -1,4 +1,5 @@
 import re
+from graphs.pytube.chains.conversation import ConversationChain
 from graphs.pytube.chains.generate import GenerateChain
 from graphs.pytube.chains.summarizer import SummarizerChain
 from graphs.pytube.state import PytubeState
@@ -17,17 +18,19 @@ class PytubeNodes():
 
     async def empty_node(self, state) -> PytubeState:
         """Empty node because i can't find how to add conditional edges to the start node"""
-        question = state["question"]
-        return PytubeState(question=question)
+        return PytubeState(question=state["question"])
     
     async def summarizer(self, state) -> PytubeState:
         question = state["question"]
-        summarization = ""
-        if await self.PytubeTools.get_transcript(question):
-            summarization = await self.SummarizerChain.chain.ainvoke({"transcript": question})
-        return PytubeState(question=question, summarization=summarization)
+        summaries = ["There is no summaries"]
+        transcript = await self.PytubeTools.get_transcript(question)
+        if transcript:
+            summarizer_summaries = await self.SummarizerChain.chain.ainvoke({"transcript": transcript})
+        return PytubeState(summaries=summaries)
     
     async def generate(self, state) -> PytubeState:
         question = state["question"]
-        final_answer = await self.GenerateChain.chain.ainvoke({"question": question})
-        return PytubeState(final_answer=final_answer)
+        summaries = state["summaries"] if "summaries" in state else []
+        final_answer = await self.GenerateChain.chain.ainvoke({"question": question,"summaries": summaries})
+        print(final_answer)
+        return PytubeState(final_answer=final_answer, summaries=[])

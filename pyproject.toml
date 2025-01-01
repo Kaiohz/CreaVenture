@@ -14,7 +14,7 @@ langchain-ollama = "*"
 langchain-community = "*"
 httpx = {extras = ["http2"], version = "*"}
 pydantic = "2.10.1"
-pytube = "*"
+pytubefix = "*"
 openai-whisper = "*"
 torch = "2.2"
 setuptools-rust = "*"
