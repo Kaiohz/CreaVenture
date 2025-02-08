@@ -1,8 +1,0 @@
-The priority is to answer the user's question.
-You will be provided with a list of headlines. 
-Separate all kind of topic, Highlight the main points and key takeaways. 
-Your answer should be clear and informative without omitting any crucial information.
-
-Question : {question}
-Headlines : {headlines}
-Answer language: French

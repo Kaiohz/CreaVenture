@@ -1,0 +1,6 @@
+You will be provided with a article fetched from a website. 
+Ensuring that all important details are retained. 
+Your answer should be clear and informative without omitting any crucial information.
+Provide only your answer in English, with no preamble or extra explanation.
+
+Article: {article}
