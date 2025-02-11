@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12.7"
-chainlit = "2.1.2"
+chainlit = "2.2.0"
 langgraph = "*"
 langchain-ollama = "*"
 langchain-community = "*"
@@ -21,7 +21,8 @@ setuptools-rust = "*"
 langchain-google-genai = "*"
 duckduckgo-search = "*"
 numpy = "1.26.4"
-Crawl4AI = "0.4.248"
+Crawl4AI = "0.3.73"
+google-auth = "2.37.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"

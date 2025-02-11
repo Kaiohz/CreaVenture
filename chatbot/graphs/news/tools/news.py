@@ -6,7 +6,7 @@ from apis.google_news import GoogleNewsApi
 from langgraph.prebuilt import ToolNode
 from apis.duckduckgo import DuckDuckGo
 from langchain_core.tools import tool
-from crawl4ai import *
+from crawl4ai import AsyncWebCrawler
 
 
 class NewsTools:
@@ -89,6 +89,13 @@ class NewsTools:
             sources: List[str] = []
 
         return (descriptions, sources)
+    
+    @tool
+    async def crawl_article(source: str) -> str:
+        """Crawls the article from the source, there is one parameter source"""
+        async with AsyncWebCrawler() as crawler:
+            article = await crawler.arun(url=source)
+            return article
 
-    tools = [get_top_headlines, get_everything]
+    tools = [get_top_headlines, get_everything, crawl_article]
     tool_node = ToolNode(tools)

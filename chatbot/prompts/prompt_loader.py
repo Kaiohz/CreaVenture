@@ -12,6 +12,8 @@ class PromptLoader:
         "TopicFinder": "news/topic_finder",
         "HeadlinesOrSpecific": "news/headlines_or_specific",
         "FetchNews": "news/fetch_news",
+        "ArticleSummarizer": "news/article_summarizer",
+        "ArticleCrawler": "news/article_crawler",
         ## Pytube agent
         "Pytube AI": "pytube/generate",
         "Summarizer": "pytube/summarizer",

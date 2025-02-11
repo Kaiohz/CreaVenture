@@ -4,6 +4,8 @@ from graphs.news.chains.fetch_news import FetchNewsChain
 from graphs.news.chains.generate import GenerateChain
 from graphs.news.chains.country_finder import CountryFinderChain
 from graphs.news.chains.topic_finder import TopicFinderChain
+from graphs.news.chains.article_crawler import ArticleCrawlerChain
+from graphs.news.chains.article_sumarizer import ArticleSummarizerChain
 from graphs.news.models.country import CountryModel
 from graphs.news.models.topic import TopicModel
 from graphs.news.state import NewsState
@@ -30,6 +32,16 @@ class NewsNodes:
             temperature=graph_params.temperature,
             prompt=self.PromptLoader.load_prompt("FetchNews"),
         )
+        self.ArticleCrawlerChain = ArticleCrawlerChain(
+            model=graph_params.model,
+            temperature=graph_params.temperature,
+            prompt=self.PromptLoader.load_prompt("ArticleCrawler"),
+        )
+        self.ArticleSummarizerChain = ArticleSummarizerChain(
+            model=graph_params.model,
+            temperature=graph_params.temperature,
+            prompt=self.PromptLoader.load_prompt("ArticleSummarizer"),
+        )
         self.GenerateChain = GenerateChain(
             model=graph_params.model,
             temperature=graph_params.temperature,
@@ -47,6 +59,7 @@ class NewsNodes:
             country = CountryModel(
                 **await self.CountryFinderChain.chain.ainvoke({"question": question})
             )
+            print(country)
         except:
             country = CountryModel(code="us")
         return NewsState(
@@ -66,7 +79,8 @@ class NewsNodes:
     async def fetch_news(self, state) -> NewsState:
         question = state["question"]
         choice = state["choice"]
-        country_code = state["country_code"] if "country" in state else ""
+        country_code = state["country_code"] if "country_code" in state else ""
+        summarized_articles = []
         try:
             response = await self.FetchNewsChain.tool_node.ainvoke(
                 {
@@ -93,9 +107,20 @@ class NewsNodes:
                 if len(headlines_sources) > 1 and headlines_sources[1]
                 else []
             )
-            ## crawl articles
-
-            ## Summarize articles
+            for source in sources:
+                crawled_article = await self.ArticleCrawlerChain.tool_node.ainvoke(
+                    {
+                        "messages": [
+                            await self.ArticleCrawlerChain.chain_with_tools.ainvoke(
+                                {
+                                    "source": source,
+                                }
+                            )
+                        ]
+                    }
+                )
+                summarized_article = await self.ArticleSummarizerChain.chain.ainvoke({"article": crawled_article})
+                summarized_articles.append(summarized_article)
         except:
             headlines = []
             sources = []

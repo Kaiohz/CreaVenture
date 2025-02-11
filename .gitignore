@@ -4,3 +4,4 @@ __pycache__
 *.docx
 .files
 temp
+.DS_Store
