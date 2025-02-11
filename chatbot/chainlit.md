@@ -21,6 +21,7 @@ A Python application built with Chainlit for interacting with Large Language Mod
 
 ### Install Dependencies
 ```bash
+git clone 
 curl https://pyenv.run | bash
 pyenv install 3.12
 pyenv global 3.12
