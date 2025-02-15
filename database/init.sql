@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     "id" UUID PRIMARY KEY,
     "identifier" TEXT NOT NULL UNIQUE,
     "metadata" JSONB NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS threads (
     "name" TEXT,
     "userId" UUID,
     "userIdentifier" TEXT,
-    "tags" TEXT[],
+    "tags" TEXT[], 
     "metadata" JSONB,
     FOREIGN KEY ("userId") REFERENCES users("id") ON DELETE CASCADE
 );
@@ -22,11 +22,12 @@ CREATE TABLE IF NOT EXISTS steps (
     "type" TEXT NOT NULL,
     "threadId" UUID NOT NULL,
     "parentId" UUID,
+    "disableFeedback" BOOLEAN NOT NULL,
     "streaming" BOOLEAN NOT NULL,
     "waitForAnswer" BOOLEAN,
     "isError" BOOLEAN,
     "metadata" JSONB,
-    "tags" TEXT[],
+    "tags" TEXT[], 
     "input" TEXT,
     "output" TEXT,
     "createdAt" TEXT,
@@ -35,8 +36,7 @@ CREATE TABLE IF NOT EXISTS steps (
     "generation" JSONB,
     "showInput" TEXT,
     "language" TEXT,
-    "indent" INT,
-    FOREIGN KEY ("threadId") REFERENCES threads("id") ON DELETE CASCADE
+    "indent" INT
 );
 
 CREATE TABLE IF NOT EXISTS elements (
@@ -52,15 +52,16 @@ CREATE TABLE IF NOT EXISTS elements (
     "page" INT,
     "language" TEXT,
     "forId" UUID,
-    "mime" TEXT,
-    FOREIGN KEY ("threadId") REFERENCES threads("id") ON DELETE CASCADE
+    "mime" TEXT
 );
 
 CREATE TABLE IF NOT EXISTS feedbacks (
     "id" UUID PRIMARY KEY,
     "forId" UUID NOT NULL,
-    "threadId" UUID NOT NULL,
     "value" INT NOT NULL,
-    "comment" TEXT,
-    FOREIGN KEY ("threadId") REFERENCES threads("id") ON DELETE CASCADE
+    "comment" TEXT
 );
+
+ALTER TABLE feedbacks ADD COLUMN IF NOT EXISTS "threadId" uuid;
+
+ALTER TABLE steps ALTER COLUMN "disableFeedback" DROP NOT NULL;

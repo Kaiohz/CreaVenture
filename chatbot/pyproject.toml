@@ -4,25 +4,27 @@ version = "0.1.0"
 description = "Chatbot with open sources LLM"
 authors = ["Kaiohz <goncalves.yohan@gmail.com>"]
 license = "Apache 2.0"
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12.7"
 chainlit = "2.2.0"
+pydantic = "2.10.1"
+numpy = "1.26.4"
+Crawl4AI = "0.3.73"
+google-auth = "2.37.0"
+ollama = "0.4.7"
+torch = "2.2"
+psycopg = "3.2.4"
+
 langgraph = "*"
 langchain-ollama = "*"
 langchain-community = "*"
 httpx = {extras = ["http2"], version = "*"}
-pydantic = "2.10.1"
 pytubefix = "*"
 openai-whisper = "*"
-torch = "2.2"
 setuptools-rust = "*"
 langchain-google-genai = "*"
 duckduckgo-search = "*"
-numpy = "1.26.4"
-Crawl4AI = "0.3.73"
-google-auth = "2.37.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
