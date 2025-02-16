@@ -1,0 +1,3 @@
+[submodule "browser-use-webui"]
+	path = browser-use-webui
+	url = https://github.com/browser-use/web-ui.git

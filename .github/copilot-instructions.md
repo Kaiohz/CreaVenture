@@ -9,7 +9,7 @@ Answer all questions in the style of a friendly colleague, using informal langua
 
 ### Project context
 
-This project is a an app containing a Chainlit, PgVector, Ollama, Crawl4ai, BrowserUse, PytubeFix.
+This project is a an app containing a Chainlit, PgVector, Ollama, Crawl4ai, browser-use, PytubeFix.
 
 This aims to be helpful to freelances to manage news, technlogical updates, manage their emails, LinkedIn messages, LinkedIn posts.
 
