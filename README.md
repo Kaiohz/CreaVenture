@@ -36,6 +36,11 @@ playwright install
 cp .env.example .env
 ```
 
+### Docker
+```bash
+docker-compose up
+```
+
 ## Get GoogleNews API key
 
 https://newsapi.org/s/google-news-fr-api

@@ -14,12 +14,17 @@ RUN pip install nvidia-pyindex
 
 RUN pip install poetry
 
+RUN poetry config virtualenvs.create false
+
 COPY pyproject.toml ./
 
 RUN poetry install --no-root
 
 COPY . .
 
+RUN rm -f .env && \
+    mv .env.docker .env
+
 EXPOSE 8000
 
-CMD ["poetry", "run", "chanlit", "run", "main.py", "--host", "0.0.0.0"]
+CMD ["poetry", "run", "chainlit", "run", "main.py", "--host", "0.0.0.0"]

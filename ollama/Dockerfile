@@ -1,6 +1,6 @@
 FROM ollama/ollama:rocm
 
-ENV OLLAMA_HOST=0.0.0.0:11434
+ENV OLLAMA_HOST=0.0.0.0
 
 EXPOSE 11434
 
