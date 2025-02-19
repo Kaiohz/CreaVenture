@@ -21,10 +21,7 @@ gradio-client = "1.7.0"
 langgraph = "*"
 langchain-ollama = "*"
 langchain-community = "*"
-<<<<<<< HEAD
 langchain-mistralai = "*"
-=======
->>>>>>> dbc7d64ae2a5a9b3b029b2f2ed5e9b3ab9ebc73c
 httpx = {extras = ["http2"], version = "*"}
 pytubefix = "*"
 openai-whisper = "*"
