@@ -1,0 +1,21 @@
+## Instructions for Video Game Search Agent
+
+OBJECTIVE:
+Search eBay.com for specific video games and provide detailed analysis of current market listings.
+
+SEARCH PARAMETERS:
+- Platform: ebay.com
+- Results per game: First 3 results
+
+REQUIRED DATA POINTS IF ANY:
+- Title
+- Price
+- Shipping cost
+- Item condition (New/Used/Refurbished)
+- Seller rating
+- Location
+- Format (Auction/Buy It Now)
+- Time left (if auction)
+
+
+## Tasks

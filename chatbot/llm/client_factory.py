@@ -1,5 +1,6 @@
 from langchain_ollama import ChatOllama
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_mistralai import ChatMistralAI
 from llm.generic_client import LLMGenericClient
 import os
 
@@ -11,6 +12,7 @@ class LLMClientFactory:
         self.model_mapping = {
             "Ollama": ChatOllama,
             "Google": ChatGoogleGenerativeAI,
+            "Mistral": ChatMistralAI,
         }
 
     def create_client(self) -> LLMGenericClient:

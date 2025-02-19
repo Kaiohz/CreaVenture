@@ -13,6 +13,7 @@ class CoreEssentials:
         "Conversational AI": "generate",
         "News AI": "generate,fetch_news",
         "Pytube AI": "generate",
+        "Games Finder AI": "generate",
     }
 
     def __init__(self):

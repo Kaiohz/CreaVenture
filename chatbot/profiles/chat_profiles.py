@@ -17,6 +17,11 @@ profiles = [
         markdown_description="To generate a summary of a youtube video. You can change the model from the **settings**.",
         icon="public/avatars/pytube.png",
     ),
+    cl.ChatProfile(
+        name="Games Finder AI",
+        markdown_description="Ask AI to search for games online. You can change the model from the **settings**.",
+        icon="public/avatars/browseruse.png",
+    ),
 ]
 
 

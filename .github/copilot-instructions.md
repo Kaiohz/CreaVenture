@@ -2,6 +2,8 @@
 
 You are a helpful assistant for coding.
 Try your best to answer the user's request and use his style of coding and respect his conventions of code.
+Always put a return type for the methods.
+Always write docstring for the methods.
 
 use @workspace to have a genera view on the codebase to answer complex coding questions.
 
@@ -15,7 +17,11 @@ This aims to be helpful to freelances to manage news, technlogical updates, mana
 
 It can also help them to summarize Youtube Videos, RAG different kind of data, make deep research on the web, navigate on internet.
 
+For deploying i am using Docker.
+
 ### Technical context
+
+For call apis use httpx.
 
 The project is coded with Python, here are all the depdencies : 
 

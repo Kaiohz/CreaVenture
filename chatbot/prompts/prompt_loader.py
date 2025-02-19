@@ -18,6 +18,9 @@ class PromptLoader:
         "Pytube AI": "pytube/generate",
         "Summarizer": "pytube/summarizer",
         "IsYoutubeLink": "pytube/is_youtube_link",
+        ## Browser agent
+        "Games Finder AI": "games/generate",
+        "GamesSearch": "games/search",
     }
 
     def load_prompt(self, chat_profile: str) -> str:

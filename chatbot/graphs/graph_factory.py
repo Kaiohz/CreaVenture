@@ -1,22 +1,23 @@
-from typing import Dict, Type
 from graphs.conversational.graph import ConversationalGraph
 from graphs.generic_graph import GenericGraph
 from graphs.graph_params import GraphParams
 from graphs.news.graph import NewsGraph
 from graphs.pytube.graph import PytubeGraph
+from graphs.games.graph import GamesFinderGraph
+
 
 
 class GraphFactory:
     def __init__(
         self,
         graph_params: GraphParams,
-        graph_mapping: Dict[str, Type[GenericGraph]] = None,
     ):
         self.graph_params = graph_params
         self.graph_mapping = {
             "Conversational AI": ConversationalGraph,
             "News AI": NewsGraph,
             "Pytube AI": PytubeGraph,
+            "Games Finder AI": GamesFinderGraph,
         }
 
     def create_graph(self) -> GenericGraph:

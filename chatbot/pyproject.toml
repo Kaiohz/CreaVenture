@@ -16,10 +16,12 @@ ollama = "0.4.7"
 torch = "2.2"
 psycopg = "3.2.4"
 psycopg-binary = "3.2.4"
+gradio-client = "1.7.0"
 
 langgraph = "*"
 langchain-ollama = "*"
 langchain-community = "*"
+langchain-mistralai = "*"
 httpx = {extras = ["http2"], version = "*"}
 pytubefix = "*"
 openai-whisper = "*"
