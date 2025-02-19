@@ -1,6 +1,9 @@
 from langchain_ollama import ChatOllama
 from langchain_google_genai import ChatGoogleGenerativeAI
+<<<<<<< HEAD
 from langchain_mistralai import ChatMistralAI
+=======
+>>>>>>> dbc7d64ae2a5a9b3b029b2f2ed5e9b3ab9ebc73c
 from llm.generic_client import LLMGenericClient
 import os
 
