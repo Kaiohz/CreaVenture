@@ -65,6 +65,7 @@ poetry run chainlit run main.py -w
 ```
 
 - Access the application at [http://localhost:8000](http://localhost:8000)
+- Default login/password admin/admin
 
 ## Features
 - **API integrations** with Google News
