@@ -1,6 +1,8 @@
 
 services:
   db:
+    profiles:
+      - "${ENABLE_DB:-1}"
     image: pgvector/pgvector:0.8.0-pg17
     container_name: creaventure-pgvector
     environment:
@@ -18,6 +20,8 @@ services:
       retries: 5
 
   chatbot:
+    profiles:
+      - "${ENABLE_CHATBOT:-1}"
     build:
       context: ./chatbot
       dockerfile: Dockerfile
@@ -26,6 +30,8 @@ services:
       - "8000:8000"
 
   ollama:
+    profiles:
+      - "${ENABLE_OLLAMA:-1}"
     build:
       context: ./ollama
       dockerfile: Dockerfile
@@ -34,6 +40,8 @@ services:
       - "11434:11434"
   
   browser-use-webui:
+    profiles:
+      - "${ENABLE_BROWSER_UI:-1}"
     platform: linux/amd64
     build:
       context: ./browser-use-webui
