@@ -22,9 +22,6 @@ RUN poetry install --no-root
 
 COPY . .
 
-RUN rm -f .env && \
-    mv .env.docker .env
-
 EXPOSE 8000
 
 CMD ["poetry", "run", "chainlit", "run", "main.py", "--host", "0.0.0.0"]
