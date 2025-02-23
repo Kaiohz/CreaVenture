@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -f .env ]; then
     source .env
@@ -25,7 +25,7 @@ PROFILES=""
 
 if [ -n "$PROFILES" ]; then
     echo "Starting services with profiles:$PROFILES"
-    docker compose $PROFILES up -d
+    docker-compose $PROFILES up -d
 else
     echo "No services enabled in .env"
     exit 1
