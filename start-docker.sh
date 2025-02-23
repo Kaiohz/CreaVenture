@@ -11,6 +11,7 @@ ARCH=$(uname -m)
 if [[ "$ARCH" == "arm64" ]] || [[ "$ARCH" == "aarch64" ]]; then
     echo "Detected ARM64 architecture"
     export DOCKERFILE=Dockerfile.arm64
+    export TARGETPLATFORM=linux/arm64
 else
     echo "Using default Dockerfile"
     export DOCKERFILE=Dockerfile
