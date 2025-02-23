@@ -11,7 +11,7 @@ Answer all questions in the style of a friendly colleague, using informal langua
 
 ### Project context
 
-This project is a an app containing a Chainlit, PgVector, Ollama, Crawl4ai, browser-use, PytubeFix.
+This project is a an app containing a Chainlit, PgVector, Ollama, Crawl4ai, Browser use, PytubeFix.
 
 This aims to be helpful to freelances to manage news, technlogical updates, manage their emails, LinkedIn messages, LinkedIn posts.
 
@@ -21,9 +21,9 @@ For deploying i am using Docker.
 
 ### Technical context
 
-For call apis use httpx.
+The project is coded with Python, here are all the depdencies for the chatbot: 
 
-The project is coded with Python, here are all the depdencies : 
+For call apis use httpx.
 
 python = "^3.12.7"
 chainlit = "2.2.0"

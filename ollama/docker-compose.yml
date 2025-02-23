@@ -1,8 +1,0 @@
-services:
-  ollama:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: creaventure-ollama
-    ports:
-      - "11434:11434"

@@ -1,9 +1,0 @@
-
-services:
-  chatbot:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: creaventure-chatbot
-    ports:
-      - "8000:8000"
