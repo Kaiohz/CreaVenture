@@ -46,7 +46,7 @@ services:
     profiles:
       - default
       - browser-use-webui
-    platform: linux/amd64
+    platform: ${TARGETPLATFORM:-linux/amd64} 
     build:
       context: ./browser-use-webui
       dockerfile: ${DOCKERFILE:-Dockerfile}
