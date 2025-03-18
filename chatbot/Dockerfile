@@ -24,4 +24,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["poetry", "run", "chainlit", "run", "main.py", "--host", "0.0.0.0"]
+CMD ["poetry", "run", "chainlit", "run", "chainlit.py", "--host", "0.0.0.0"]
