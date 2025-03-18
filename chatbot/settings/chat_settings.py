@@ -10,9 +10,6 @@ class ChatSettings:
                 label="LLM Model",
                 values=[
                     "Mistral/pixtral-large-2411",
-                    "Google/gemini-1.5-flash-8b",
-                    "Google/gemini-1.5-flash",
-                    "Google/gemini-1.5-pro",
                     "Google/gemini-2.0-flash",
                     "Ollama/deepseek-r1",
                     "Ollama/llama3.2",

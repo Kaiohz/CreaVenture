@@ -5,7 +5,6 @@ from graphs.graph_params import GraphParams
 from prompts.prompt_loader import PromptLoader
 
 
-
 class GamesFinderNodes:
 
     PromptLoader = PromptLoader()
@@ -17,15 +16,13 @@ class GamesFinderNodes:
             prompt=self.PromptLoader.load_prompt(graph_params.agent),
         )
         self.BrowserUseApi = BrowserUseApi(model=graph_params.model)
-        self.task=self.PromptLoader.load_prompt("GamesSearch")
+        self.task = self.PromptLoader.load_prompt("GamesSearch")
 
     async def run_task(self, state) -> GamesFinderState:
         question = state["question"]
         task = f"{self.task} \n {question}".format(question=question)
         result = await self.BrowserUseApi.run_task(task)
-        return GamesFinderState(
-            question=state["question"], report=result
-        )
+        return GamesFinderState(question=state["question"], report=result)
 
     async def generate(self, state) -> GamesFinderState:
         question = state["question"]

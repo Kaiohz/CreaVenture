@@ -65,3 +65,7 @@ CREATE TABLE IF NOT EXISTS feedbacks (
 ALTER TABLE feedbacks ADD COLUMN IF NOT EXISTS "threadId" uuid;
 
 ALTER TABLE steps ALTER COLUMN "disableFeedback" DROP NOT NULL;
+
+ALTER TABLE steps ADD COLUMN IF NOT EXISTS "defaultOpen" boolean;
+
+ALTER TABLE elements ADD COLUMN IF NOT EXISTS "props" jsonb;

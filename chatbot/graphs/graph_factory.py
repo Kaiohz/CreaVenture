@@ -6,7 +6,6 @@ from graphs.pytube.graph import PytubeGraph
 from graphs.games.graph import GamesFinderGraph
 
 
-
 class GraphFactory:
     def __init__(
         self,

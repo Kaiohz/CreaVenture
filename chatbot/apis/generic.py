@@ -1,5 +1,6 @@
 import httpx
 
+
 class GenericApi:
     base_url = None
     headers = None

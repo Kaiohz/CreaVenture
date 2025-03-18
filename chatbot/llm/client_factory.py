@@ -17,7 +17,7 @@ class LLMClientFactory:
 
     def create_client(self) -> LLMGenericClient:
         category = self.model.split("/")[0]
-        model = self.model.split("/")[1]        
+        model = self.model.split("/")[1]
         params = {"model": model, "temperature": self.temperature}
         if category == "Ollama":
             params["base_url"] = os.environ.get("OLLAMA_BASE_URL")

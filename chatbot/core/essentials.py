@@ -21,14 +21,15 @@ class CoreEssentials:
         self.graph_factory = GraphFactory(self.graph_params)
 
     async def setup_chat(self, model: str, temperature: float):
-        chat_profile: str = cl.user_session.get("chat_profile")
-        self.graph_params.agent = chat_profile
+        # Copilot
+        self.graph_params.agent = (
+            cl.user_session.get("chat_profile") or "Conversational AI"
+        )
         self.graph_params.model = model
         self.graph_params.temperature = temperature
-        graph = self.graph_factory.create_graph()
         cl.user_session.set("model", model)
         cl.user_session.set("temperature", temperature)
-        cl.user_session.set("graph", graph)
+        cl.user_session.set("graph", self.graph_factory.create_graph())
 
     async def call_agent(self, msg: cl.Message) -> AsyncIterator[dict[str, Any] | Any]:
         graph: GenericGraph = cl.user_session.get("graph")
@@ -44,8 +45,9 @@ class CoreEssentials:
 
     async def process_response(self, response: AsyncIterator[dict[str, Any] | Any]):
         answer = cl.Message(content="")
-        sources = None
-        node_name = self.nodes_mapping[cl.user_session.get("chat_profile")]
+        # Copilot
+        node = cl.user_session.get("chat_profile") or "Conversational AI"
+        node_name = self.nodes_mapping[node]
         final_node = node_name.split(",")[0]
         sources_node = (
             node_name.split(",")[1] if len(node_name.split(",")) > 1 else None

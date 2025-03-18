@@ -1,4 +1,3 @@
-
 from apis.dataclass.browseruse.browser_use_request import BrowserUseRequest
 from apis.dataclass.browseruse.browser_use_response import BrowserUseResponse
 from gradio_client import Client
@@ -6,12 +5,12 @@ import asyncio
 import os
 
 
-
 class BrowserUseClient:
     client = Client(os.environ.get("BROWSER_USE_BASE_URL"))
 
-    async def predict(self,request: BrowserUseRequest) -> BrowserUseResponse:
-        response = await asyncio.to_thread(self.client.predict,
+    async def predict(self, request: BrowserUseRequest) -> BrowserUseResponse:
+        response = await asyncio.to_thread(
+            self.client.predict,
             agent_type=request.agent_type,
             llm_provider=request.llm_provider,
             llm_model_name=request.llm_model_name,
@@ -35,10 +34,6 @@ class BrowserUseClient:
             use_vision=request.use_vision,
             max_actions_per_step=request.max_actions_per_step,
             tool_calling_method=request.tool_calling_method,
-            api_name="/run_with_stream"
+            api_name="/run_with_stream",
         )
-        print(response[1])
-        return BrowserUseResponse(
-                markdown_content=response[1],
-                file_path=None
-        )
+        return BrowserUseResponse(markdown_content=response[1], file_path=None)

@@ -15,7 +15,6 @@ class PytubeTools:
 
     async def get_transcript(self, question: str) -> str:
         """get the transcript from a YouTube video"""
-        model = whisper.load_model("medium")
         youtube_links = re.findall(self.YOUTUBE_PATTERN, question)
         transcript = ""
         for youtube_link in youtube_links:
@@ -33,6 +32,7 @@ class PytubeTools:
             if captions:
                 transcript = captions.generate_srt_captions()
             else:
+                model = whisper.load_model("medium")
                 yt.streams.get_audio_only().download(
                     output_path="./temp", filename="audio"
                 )

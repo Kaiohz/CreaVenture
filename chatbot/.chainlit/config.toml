@@ -55,7 +55,7 @@ edit_message = true
 # Name of the assistant.
 name = "CreaVenture"
 
-# default_theme = "dark"
+default_theme = "light"
 
 # layout = "wide"
 
@@ -88,4 +88,4 @@ cot = "full"
 #     url = "https://github.com/Chainlit/chainlit/issues"
 
 [meta]
-generated_by = "2.2.0"
+generated_by = "2.4.0"

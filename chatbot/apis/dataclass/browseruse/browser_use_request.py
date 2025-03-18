@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class BrowserUseRequest:
     llm_provider: str
@@ -33,7 +34,7 @@ class BrowserUseRequest:
             "data": [
                 self.task,
                 self.llm_provider,
-                self.llm_model_name, 
+                self.llm_model_name,
                 self.llm_api_key,
                 self.use_vision,
                 self.save_recording_path,
@@ -53,6 +54,6 @@ class BrowserUseRequest:
                 self.max_steps,
                 True,
                 self.max_actions_per_step,
-                self.tool_calling_method
+                self.tool_calling_method,
             ]
         }

@@ -89,7 +89,7 @@ class NewsTools:
             sources: List[str] = []
 
         return (descriptions, sources)
-    
+
     @tool
     async def crawl_article(source: str) -> str:
         """Crawls the article from the source, there is one parameter source"""

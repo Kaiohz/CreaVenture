@@ -59,9 +59,9 @@ https://auth.mistral.ai/ui/login
 docker-compose up
 ```
 
-### Run the Application
+### Run the Chatbot
 ```bash
-poetry run chainlit run main.py -w
+poetry run chainlit run chainlit.py -w
 ```
 
 - Access the application at [http://localhost:8000](http://localhost:8000)

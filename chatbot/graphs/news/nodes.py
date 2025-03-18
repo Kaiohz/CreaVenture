@@ -59,7 +59,6 @@ class NewsNodes:
             country = CountryModel(
                 **await self.CountryFinderChain.chain.ainvoke({"question": question})
             )
-            print(country)
         except:
             country = CountryModel(code="us")
         return NewsState(
@@ -119,7 +118,9 @@ class NewsNodes:
                         ]
                     }
                 )
-                summarized_article = await self.ArticleSummarizerChain.chain.ainvoke({"article": crawled_article})
+                summarized_article = await self.ArticleSummarizerChain.chain.ainvoke(
+                    {"article": crawled_article}
+                )
                 summarized_articles.append(summarized_article)
         except:
             headlines = []
